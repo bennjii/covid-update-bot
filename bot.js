@@ -8,7 +8,7 @@ const bot = new Discord.Client({disableEveryone: true});
 const token = botSettings.token += botSettings.token2 += botSettings.token3 += botSettings.token4;
 
 bot.on("ready", async () => {
-    console.log('COVID-UPDATE is ready!');
+    console.log('COVID-19-UPDATE is ready!');
 
     try {
         let link = await bot.generateInvite(["ADMINISTRATOR"]);
