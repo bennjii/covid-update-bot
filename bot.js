@@ -88,7 +88,7 @@ bot.on('message', message => {
 
                             var response = new Discord.MessageEmbed()
                                 .setColor(color)
-                                .setAuthor('Coronavirus (COVID-19) Cases | ' + json[i].Country, 'https://www.thailandmedical.news/uploads/news/5e6de6608150b_Coronavirus%20Research.jpg') // Optinal link , 'https://discord.js.org'
+                                .setAuthor('Coronavirus (COVID-19) Cases | ' + json[i].Country, './resources/assets/logo.png') // Optinal link , 'https://discord.js.org'
                                 .addFields(
                                     { name: 'Confirmed', value: '**' + cases + "** (+"+ new_cases + ")", inline: true},
                                     { name: 'Recovered', value: '**' + recovered + "** (+"+ new_recovered + ")", inline: true},
