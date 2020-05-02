@@ -77,7 +77,7 @@ bot.on('message', message => {
                     obj = Object.keys(json).length;
 
                     for(var i = 0; i < obj; i++){
-                        console.log(json[i].Slug);
+                        //console.log(json[i].Slug);
                         if(json[i].Slug == args){
                             cases = json[i].TotalConfirmed;
                             new_cases = json[i].NewConfirmed;
@@ -88,7 +88,7 @@ bot.on('message', message => {
 
                             var response = new Discord.MessageEmbed()
                                 .setColor(color)
-                                .setAuthor('Coronavirus (COVID-19) Cases | ' + json[i].Country, 'https://www.thailandmedical.news/uploads/news/5e6de6608150b_Coronavirus%20Research.jpg') // Optinal link , 'https://discord.js.org'
+                                .setAuthor('Coronavirus (COVID-19) Cases | ' + json[i].Country, 'https://raw.githubusercontent.com/UnRealReincarlution/COVID-UPDATE/master/resources/assets/logo.png?token=AI2K5ZZNFX4TE4GC6POTQOK6VUTQE') // Optinal link , 'https://discord.js.org'
                                 .addFields(
                                     { name: 'Confirmed', value: '**' + cases + "** (+"+ new_cases + ")", inline: true},
                                     { name: 'Recovered', value: '**' + recovered + "** (+"+ new_recovered + ")", inline: true},
