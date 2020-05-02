@@ -59,7 +59,7 @@ bot.on('message', message => {
 
         country = args
 
-        let url = "https://api.covid19api.com/dayone/country/" + country;
+        let url = "https://api.covid19api.com/summary";
 
         https.get(url,(res) => {
             let body = "";
@@ -70,28 +70,39 @@ bot.on('message', message => {
 
             res.on("end", () => {
                 try {
-                    let json = JSON.parse(body);
-                    cases = json[json.length - 2].Confirmed;
-                    new_cases = json[json.length - 2].Confirmed - json[json.length - 3].Confirmed;
-                    recovered = json[json.length - 2].Recovered;
-                    deaths = json[json.length - 2].Deaths;
-                    new_deaths = json[json.length - 2].Deaths - json[json.length - 3].Deaths;
-                    active = json[json.length - 2].Active;
+                    let json2 = JSON.parse(body);
+                    let json = json2.Countries;
+                    //console.log(json);
 
-                    var response = new Discord.MessageEmbed()
-                        .setColor(color)
-                        .setAuthor('Coronavirus (COVID-19) Cases | ' + json[json.length - 2].Country, 'https://www.thailandmedical.news/uploads/news/5e6de6608150b_Coronavirus%20Research.jpg') // Optinal link , 'https://discord.js.org'
-                        .addFields(
-                            { name: 'Confirmed', value: '**' + cases + "** (+"+ new_cases + ")", inline: true},
-                            { name: 'Active Cases', value: '**' + active + "**", inline: true},
-                            { name: 'Recovered', value: '**' + recovered + "**", inline: true},
-                            { name: 'Deaths', value: '**' + deaths + "** (+"+ new_deaths + ")", inline: true}
-                        )
-                        .setTimestamp()
-                        .setFooter('Data from covid19api.com');
+                    obj = Object.keys(json).length;
+
+                    for(var i = 0; i < obj; i++){
+                        console.log(json[i].Slug);
+                        if(json[i].Slug == args){
+                            cases = json[i].TotalConfirmed;
+                            new_cases = json[i].NewConfirmed;
+                            recovered = json[i].TotalRecovered;
+                            new_recovered = json[i].NewRecovered;
+                            deaths = json[i].TotalDeaths;
+                            new_deaths = json[i].NewDeaths;
+
+                            var response = new Discord.MessageEmbed()
+                                .setColor(color)
+                                .setAuthor('Coronavirus (COVID-19) Cases | ' + json[i].Country, 'https://www.thailandmedical.news/uploads/news/5e6de6608150b_Coronavirus%20Research.jpg') // Optinal link , 'https://discord.js.org'
+                                .addFields(
+                                    { name: 'Confirmed', value: '**' + cases + "** (+"+ new_cases + ")", inline: true},
+                                    { name: 'Recovered', value: '**' + recovered + "** (+"+ new_recovered + ")", inline: true},
+                                    { name: 'Deaths', value: '**' + deaths + "** (+"+ new_deaths + ")", inline: true}
+                                )
+                                .setTimestamp()
+                                .setFooter('Data from covid19api.com');
+
+                            
+                            message.channel.send(response);
+                        }
+                    }
 
                     
-                    message.channel.send(response);
                 } catch (error) {
                     console.error(error.message);
 
