@@ -1,6 +1,8 @@
 const Commando = require('discord.js-commando');
 const botSettings = require("./botsettings.json");
 
+// 3/05/2020
+
 const client = new Commando.Client({
     commandPrefix: botSettings.prefix
 });
