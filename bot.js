@@ -1,6 +1,10 @@
 const Commando = require('discord.js-commando');
-const client = new Commando.Client();
 const botSettings = require("./botsettings.json");
+
+const client = new Commando.Client({
+    commandPrefix: botSettings.prefix
+});
+
 const token = botSettings.token += botSettings.token2 += botSettings.token3 += botSettings.token4;
 
 client.registry.registerGroup('all', 'All');
