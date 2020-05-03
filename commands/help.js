@@ -18,9 +18,6 @@ module.exports = {
 
 function getAll(client, message) {
     const embed = new RichEmbed()
-        .setColor("#0099ff")
-        .setTitle("𝕔𝕠𝕧𝕚𝕤𝕥𝕒𝕥 Help")
-        .setDescription("Corona help is design to help us . . .")
 
     const commands = (category) => {
         return client.commands
@@ -35,4 +32,18 @@ function getAll(client, message) {
 
     return message.channel.send(embed.setDescription(info));
 
+}
+
+function getCMD(client, message, input) {
+    const embed = new RichEmbed()
+
+    const cmd = client.commands.get(input.toLowerCase()) || clinet.commands.get(client.alias.get(input.toLowerCase));
+
+    let info = 'Hey, the command **${(input.toLowerCase())}** does not exist';
+
+    if(!cmd) {
+        return message.channel.send(embed.setColor("#ff0000").setDescription(info));
+    }
+
+    
 }
